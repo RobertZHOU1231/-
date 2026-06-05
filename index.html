@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>口译笔记可视化系统</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 顶部标题栏 -->
+    <header class="header">
+        <h1>口译笔记可视化系统</h1>
+        <p>实时语音识别 · 智能翻译 · 结构化笔记</p>
+    </header>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 录音控制区 -->
+        <section class="control-section">
+            <div class="control-buttons">
+                <button id="startBtn" class="btn btn-start">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+                        <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                        <line x1="12" y1="19" x2="12" y2="23"></line>
+                        <line x1="8" y1="23" x2="16" y2="23"></line>
+                    </svg>
+                    开始录音
+                </button>
+                <button id="stopBtn" class="btn btn-stop" disabled>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="6" y="6" width="12" height="12" rx="2" ry="2"></rect>
+                    </svg>
+                    停止录音
+                </button>
+            </div>
+            <div id="recordingStatus" class="recording-status">等待开始</div>
+        </section>
+
+        <!-- 三栏结果区 -->
+        <section class="results-section">
+            <!-- 原文栏 -->
+            <div class="result-card">
+                <h3>📝 原文（英文）</h3>
+                <div id="transcriptContent" class="result-content">
+                    <span class="placeholder">等待语音输入...</span>
+                </div>
+            </div>
+
+            <!-- 翻译栏 -->
+            <div class="result-card">
+                <h3>🌐 翻译（中文）</h3>
+                <div id="translationContent" class="result-content">
+                    <span class="placeholder">等待翻译结果...</span>
+                </div>
+            </div>
+
+            <!-- 笔记栏 -->
+            <div class="result-card">
+                <h3>📋 口译笔记</h3>
+                <div id="notesContent" class="result-content notes-content">
+                    <span class="placeholder">等待笔记生成...</span>
+                </div>
+                <div class="copy-btn-container">
+                    <button id="copyBtn" class="btn-copy">复制笔记</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部状态栏 -->
+        <footer class="status-bar">
+            <div class="status-item">
+                <span id="wsStatusDot" class="status-dot disconnected"></span>
+                <span>WebSocket: <span id="wsStatus">未连接</span></span>
+            </div>
+            <div class="status-item">
+                <span id="apiStatusDot" class="status-dot disconnected"></span>
+                <span>API: <span id="apiStatus">空闲</span></span>
+            </div>
+            <div id="statusMessage" class="status-message">系统就绪</div>
+        </footer>
+    </div>
+
+    <script src="src/app.js"></script>
+</body>
+</html>
